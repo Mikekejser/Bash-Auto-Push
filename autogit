@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Pass the name of the Github repository you want to push to as the first parameter.
+
+if [ ! -d .git ]
+then
+  git init
+fi
+
+git add -A
+git commit -m "initial commit"
+if grep -q "remote" .git/config
+then
+  :
+else
+  git remote add origin https://github.com/Mikekejser/$1
+fi
+git push -u origin master
